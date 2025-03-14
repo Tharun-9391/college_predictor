@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Admission</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<style>
+    body {
+        background: url("{{ url_for('static', filename='college.jpeg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+<body>
+    <div class="container">
+        <h2>Enter Your Details for Admission Prediction</h2>
+        <form action="/predict" method="POST">
+            <input type="number"  name="ipe marks" placeholder="ipe marks (e.g.,900)" required>
+            
+                <select name="category" required>
+                    <option value="OC BOYS">OC BOYS</option>
+                    <option value="OC GIRLS">OC GIRLS</option>
+                    <option value="BC_A BOYS">BC_A BOYS</option>
+                    <option value="BC_A GIRLS">BC_A GIRLS</option>
+                    <option value="BC_B BOYS">BC_B BOYS</option>
+                    <option value="BC_B GIRLS">BC_B GIRLS</option>
+                    <option value="BC_C BOYS">BC_C BOYS</option>
+                    <option value="BC_C GIRLS">BC_C GIRLS</option>
+                    <option value="BC_D BOYS">BC_D BOYS</option>
+                    <option value="BC_D GIRLS">BC_D GIRLS</option>
+                    <option value="BC_E BOYS">BC_E BOYS</option>
+                    <option value="BC_E GIRLS">BC_E GIRLS</option>
+                    <option value="SC BOYS">SC BOYS</option>
+                    <option value="SC GIRLS">SC GIRLS</option>
+                    <option value="ST BOYS">ST BOYS</option>
+                    <option value="ST GIRLS">ST GIRLS</option>
+                    <option value="EWS GEN OU">EWS GEN OU</option>
+                    <option value="EWS GIRLS OU">EWS GIRLS OU</option>
+                </select>
+            <input type="number" name="rank" placeholder="enter your rank" required><br>
+            <button type="submit" class="btn">Predict Colleges</button>
+        </form>
+        <a href="/logout" class="btn logout">Logout</a>
+    </div>
+</body>
+</html>
