@@ -78,6 +78,16 @@ Now, open your browser and go to **`http://127.0.0.1:5000/`** to use the applica
 │── requirements.txt # Dependencies  
 │── README.md       # Documentation  
 ```  
+## References
 
+Pandas Documentation - For Data Preprocessing
+
+Scikit-Learn Documentation - For Machine Learning Model
+
+Flask Documentation - For Web Application Development
+
+SQLite Documentation - For Database Management
+
+Machine Learning for College Admissions - Understanding Prediction Model
  
 
