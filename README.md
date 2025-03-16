@@ -41,8 +41,8 @@ To set up and run the project locally, follow these steps:
 
 ### Clone the Repository  
 ```bash  
-git clone https://github.com/Tharun-9391/Tharun-9391.git  
-cd Tharun-9391  
+git clone https://github.com/Tharun-9391/college_predictor.git  
+cd college_predictor  
 ```  
 
 ### Set Up Virtual Environment  
