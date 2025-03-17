@@ -65,7 +65,7 @@ python setup_db.py  # Creates the SQLite database and required tables
 ```bash  
 python app.py  
 ```  
-Now, open your browser and go to **`http://127.0.0.1:5000/`** to use the application. 🎉  
+Now, open your browser and go to **`http://127.0.0.1:5000/`** to use the application.   
 
 ## Project Structure  
 ```
