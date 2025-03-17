@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 ### Set Up the Database  
 ```bash  
-python setup_db.py  # Creates the SQLite database and required tables  
+python database.py  # Creates the SQLite database and required tables  
 ```  
 
 ### Run the Flask App  
