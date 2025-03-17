@@ -29,28 +29,28 @@ def register():
         password = request.form["password"]
 
         conn = sqlite3.connect("users.db")
-        conn.execute("PRAGMA journal_mode=WAL;")  # ✅ Enables write-ahead logging
+        conn.execute("PRAGMA journal_mode=WAL;")  #  Enables write-ahead logging
         cursor = conn.cursor()
 
-        # ✅ Check if the username already exists
+        #  Check if the username already exists
         cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
         existing_user = cursor.fetchone()
 
         if existing_user:
-            flash("Username already exists!")  # ✅ Show error if username exists
+            flash("Username already exists!")  #  Show error if username exists
             conn.close()
             return redirect("/register")
 
         try:
             cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
             conn.commit()
-            flash("Registration successful! You can now log in.")  # ✅ Success message
+            flash("Registration successful! You can now log in.")  #  Success message
         except sqlite3.Error as e:
             conn.rollback()
-            flash(f"Database Error: {e}")  # ✅ Show DB error if any
+            flash(f"Database Error: {e}")  #  Show DB error if any
         finally:
             cursor.close()
-            conn.close()  # ✅ Ensure database is closed
+            conn.close()  # Ensure database is closed
 
         return redirect("/login")
 
@@ -72,11 +72,11 @@ def login():
         conn.close()
 
         if user:
-            session["user"] = username  # ✅ Store session data
-            return redirect("/predict")  # ✅ Redirect to predict page after login
+            session["user"] = username  #  Store session data
+            return redirect("/predict")  #  Redirect to predict page after login
         else:
-            flash("Invalid username or password!")  # ✅ Flash message for invalid credentials
-            return redirect("/login")  # ✅ Redirect back to login page
+            flash("Invalid username or password!")  #  Flash message for invalid credentials
+            return redirect("/login")  #  Redirect back to login page
     
     return render_template("login.html")
 
@@ -98,27 +98,27 @@ def view_users():
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
     if "user" not in session:
-        return redirect("/login")  # ✅ Redirect if not logged in
+        return redirect("/login")  #  Redirect if not logged in
     
     if request.method == "POST":
         category = request.form["category"]
         rank = int(request.form["rank"])
 
-        df = pd.read_excel("dataset/eamcet_dataset.xlsx", engine="openpyxl")  # ✅ Load dataset
+        df = pd.read_excel("dataset/eamcet_dataset.xlsx", engine="openpyxl")  #  Load dataset
         
-        # ✅ Filter based on category and rank
+        #  Filter based on category and rank
         df_filtered = df[df[category] >= rank]  
 
-        # ✅ Get top 5 colleges based on category rank
+        #  Get top 5 colleges based on category rank
         predicted_data = df_filtered.nsmallest(5, category)[["Institute Name", "Branch Name"]].drop_duplicates()
 
-        # ✅ Ensure at least 5 colleges are returned
+        #  Ensure at least 5 colleges are returned
         while len(predicted_data) < 5:
             df_filtered = df[df[category] > rank]  # Get more colleges with slightly higher rank
             extra_data = df_filtered.nsmallest(5 - len(predicted_data), category)[["Institute Name", "Branch Name"]]
             predicted_data = pd.concat([predicted_data, extra_data]).drop_duplicates()
 
-        # ✅ Convert DataFrame to list of tuples (college, branch)
+        #  Convert DataFrame to list of tuples (college, branch)
         predicted_colleges = list(predicted_data.itertuples(index=False, name=None))
 
         return render_template("results.html", colleges=predicted_colleges)
