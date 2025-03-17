@@ -74,7 +74,7 @@ Now, open your browser and go to **`http://127.0.0.1:5000/`** to use the applica
 │──  templates     # HTML templates  
 │── app.py          # Main Flask application  
 │── model.py        # ML model training script  
-│── setup_db.py     # Database setup script  
+│── database.py     # Database setup script  
 │── requirements.txt # Dependencies  
 │── README.md       # Documentation  
 ```  
